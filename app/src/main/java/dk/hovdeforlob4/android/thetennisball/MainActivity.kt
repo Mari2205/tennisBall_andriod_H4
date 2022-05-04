@@ -11,6 +11,9 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 
+/**
+ * @see https://www.youtube.com/watch?v=xcsuDDQHrLo
+ */
 class MainActivity : AppCompatActivity(), SensorEventListener {
 
     private lateinit var sensorManager: SensorManager
@@ -18,7 +21,7 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        
+
         setUpSensorStuff()
     }
 

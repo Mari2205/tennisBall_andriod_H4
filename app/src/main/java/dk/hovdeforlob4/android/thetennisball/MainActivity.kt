@@ -14,17 +14,11 @@ import android.widget.TextView
 class MainActivity : AppCompatActivity(), SensorEventListener {
 
     private lateinit var sensorManager: SensorManager
-    private lateinit var square:TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
-        square = findViewById<TextView>(R.id.txtView)
-//        val imageBox = findViewById<ImageView>(R.id.imageView_move)
-//
-//        imageBox.x = 100F
-//        imageBox.y = 102F
+        
         setUpSensorStuff()
     }
 
@@ -43,18 +37,10 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
 
     override fun onSensorChanged(event: SensorEvent?) {
         val ball = findViewById<ImageView>(R.id.imageView_move)
-
+        val square = findViewById<TextView>(R.id.txtView)
         if(event?.sensor?.type == Sensor.TYPE_ACCELEROMETER){
             val sides = event.values[0]
             val upDown = event.values[1]
-
-//            square.apply {
-//                rotationX = upDown * 3f
-//                rotationY = sides * 3f
-//                rotation = -sides
-//                translationX = sides * -10
-//                translationY = upDown * 10
-//            }
 
             ball.apply {
                 x = sides * 50f

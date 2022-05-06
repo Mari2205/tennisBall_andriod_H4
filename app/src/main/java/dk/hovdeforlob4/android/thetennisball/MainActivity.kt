@@ -34,7 +34,7 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
             sensorManager.registerListener(
             this,                        // listener
             it,                                 // sensor
-            SensorManager.SENSOR_DELAY_FASTEST, // sampling period
+            SensorManager.SENSOR_DELAY_FASTEST, // sampling period Us(micro sec)
             SensorManager.SENSOR_DELAY_FASTEST  // max report latency
             )
         }

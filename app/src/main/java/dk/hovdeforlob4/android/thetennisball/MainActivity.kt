@@ -12,6 +12,7 @@ import android.widget.TextView
 
 /**
  * @see https://www.youtube.com/watch?v=xcsuDDQHrLo
+ * @see https://developer.android.com/reference/kotlin/android/hardware/SensorManager
  */
 class MainActivity : AppCompatActivity(), SensorEventListener {
 
@@ -44,31 +45,34 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
         val txtview = findViewById<TextView>(R.id.txtView)
 
         if(event?.sensor?.type == Sensor.TYPE_ACCELEROMETER){
-            val sides = event.values[0]
-            val upDown = event.values[1]
+            val leftRight  = event.values[0]
+            val upDown     = event.values[1]
 
             ball.apply {
-                x = sides * 50f
-                y = upDown * 50f
+                x = leftRight * 50f
+                y = upDown    * 50f
 
-                translationX = sides * -50
-                translationY = upDown * 150
+                translationX = leftRight * -50
+                translationY = upDown    * 150
             }
 
+            val colour = if (upDown.toInt() == 0 && leftRight.toInt() == 0)
+                Color.GREEN else Color.RED
 
-            val colour = if (upDown.toInt() == 0 && sides.toInt() == 0) Color.GREEN else Color.RED
             txtview.setBackgroundColor(colour)
-
-            txtview.text = "up/down ${upDown.toInt()}\nleft/right ${sides.toInt()}"
+            txtview.text = "up/down ${upDown.toInt()}\nleft/right ${leftRight.toInt()}"
         }
     }
+
 
     override fun onAccuracyChanged(p0: Sensor?, p1: Int) {
         return
     }
 
+
     override fun onDestroy() {
         sensorManager.unregisterListener(this)
         super.onDestroy()
     }
+
 }

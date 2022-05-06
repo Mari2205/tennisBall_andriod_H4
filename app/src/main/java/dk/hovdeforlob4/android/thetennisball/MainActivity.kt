@@ -7,7 +7,6 @@ import android.hardware.SensorEventListener
 import android.hardware.SensorManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 
@@ -22,25 +21,28 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        setUpSensorStuff()
+        setUpAccelerometerSensor()
     }
 
-    private fun setUpSensorStuff(){
+
+    private fun setUpAccelerometerSensor(){
         sensorManager = getSystemService(SENSOR_SERVICE) as SensorManager
 
         sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER)?.also {
             sensorManager.registerListener(
-            this,
-            it,
-            SensorManager.SENSOR_DELAY_FASTEST,
-            SensorManager.SENSOR_DELAY_FASTEST
+            this,                        // listener
+            it,                                 // sensor
+            SensorManager.SENSOR_DELAY_FASTEST, // sampling period
+            SensorManager.SENSOR_DELAY_FASTEST  // max report latency
             )
         }
     }
 
+
     override fun onSensorChanged(event: SensorEvent?) {
         val ball = findViewById<ImageView>(R.id.imageView_move)
-        val square = findViewById<TextView>(R.id.txtView)
+        val txtview = findViewById<TextView>(R.id.txtView)
+
         if(event?.sensor?.type == Sensor.TYPE_ACCELEROMETER){
             val sides = event.values[0]
             val upDown = event.values[1]
@@ -55,9 +57,9 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
 
 
             val colour = if (upDown.toInt() == 0 && sides.toInt() == 0) Color.GREEN else Color.RED
-            square.setBackgroundColor(colour)
+            txtview.setBackgroundColor(colour)
 
-            square.text = "up/down ${upDown.toInt()}\nleft/right ${sides.toInt()}"
+            txtview.text = "up/down ${upDown.toInt()}\nleft/right ${sides.toInt()}"
         }
     }
 

@@ -3,7 +3,10 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/uncha/AndroidStudioProjects/TheTennisBall/app/src/main/res/drawable/ic_tennisCorad_background.xml" value="0.187" />
+        <entry key="..\:/Users/uncha/AndroidStudioProjects/TheTennisBall/app/src/main/res/drawable/ic_tennis_corad_background.xml" value="0.1785" />
         <entry key="..\:/Users/uncha/AndroidStudioProjects/TheTennisBall/app/src/main/res/layout/activity_main.xml" value="0.2" />
+        <entry key="..\:/Users/uncha/AndroidStudioProjects/TheTennisBall/app/src/main/res/mipmap-anydpi-v26/ic_tennisCorad.xml" value="0.129" />
       </map>
     </option>
   </component>

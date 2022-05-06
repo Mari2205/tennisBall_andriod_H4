@@ -20,6 +20,7 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        supportActionBar?.hide() // removes the actionbar
         setContentView(R.layout.activity_main)
 
         setUpAccelerometerSensor()
@@ -41,7 +42,7 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
 
 
     override fun onSensorChanged(event: SensorEvent?) {
-        val ball = findViewById<ImageView>(R.id.imageView_move)
+        val ball = findViewById<ImageView>(R.id.imageView_ball)
         val txtview = findViewById<TextView>(R.id.txtView)
 
         if(event?.sensor?.type == Sensor.TYPE_ACCELEROMETER){
